@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Amor para Ti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('hellokitty.png') no-repeat center center fixed;
+            background-size: cover; /* Ajusta la imagen al tamaño de la pantalla */
+            color: #333;
+            text-align: center;
+        }
+        .download-container {
+            margin-top: 20px;
+        }
+        .download-link {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #ff3399;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        .download-link:hover {
+            background-color: #e6007e;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Blanco con opacidad para el fondo del contenedor */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra del cuadro */
+        }
+        h1 {
+            color: #ff66b2; /* Rosa fuerte */
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555; /* Gris oscuro */
+        }
+        .heart {
+            font-size: 50px;
+            color: #ff3399; /* Rosa intenso */
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888; /* Gris claro */
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .image-box {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+            background-color: #ffffff; /* Blanco */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave de las imágenes */
+            overflow: hidden; /* Esconde el desbordamiento de las imágenes */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .image-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada en hover */
+        }
+        .image-box img {
+            width: 100%;
+            height: auto; /* Mantiene la proporción de la imagen */
+            display: block;
+        }
+        .video-container {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #ffffff; /* Blanco */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave del video */
+            overflow: hidden;
+        }
+        .video-container video {
+            width: 100%;
+            height: auto; /* Mantiene la proporción del video */
+            display: block;
+        }
+        .audio-controls {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .audio-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #ff3399; /* Rosa intenso */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .audio-button:hover {
+            background-color: #e6007e;
+            transform: scale(1.05);
+        }
+        .audio-button:active {
+            background-color: #cc007a;
+        }
+        .audio-button:disabled {
+            background-color: #c0c0c0;
+            cursor: not-allowed;
+        }
+        .pdf-preview-container {
+            margin: 20px 0;
+        }
+        .pdf-preview {
+            width: 100%;
+            max-width: 800px; /* Ajusta el ancho máximo según sea necesario */
+            height: 600px; /* Ajusta la altura según sea necesario */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave del contenedor del PDF */
+        }
+    </style>
+</head>
+<body>
+    <!-- Elemento de audio -->
+    <audio id="myAudio" src="sexo.mp3" preload="auto"></audio>
+    
+    <!-- Controles de audio -->
+    <div class="audio-controls">
+        <button class="audio-button" onclick="playAudio()">Reproducir Audio</button>
+        <button class="audio-button" onclick="pauseAudio()">Pausar Audio</button>
+        <button class="audio-button" onclick="resumeAudio()">Reanudar Audio</button>
+    </div>
+    
+    <script>
+        var audio = document.getElementById('myAudio');
+
+        function playAudio() {
+            audio.play().catch(function(error) {
+                console.log('Error al intentar reproducir el audio:', error);
+            });
+        }
+
+        function pauseAudio() {
+            audio.pause();
+        }
+
+        function resumeAudio() {
+            audio.play().catch(function(error) {
+                console.log('Error al intentar reanudar el audio:', error);
+            });
+        }
+    </script>
+    
+    <div class="container">
+        <h1>Feliz cumpleaños mi reina hermosa</h1>
+        <p></p>
+        <p>Eres la mejor persona que pude encontrar en el mundo, te agradezco mucho por hacerme tan feliz, eres y siempre seras el amor de mi vida, ojala esto nunca acabe porque no me veo sin ti, quiero una vida a tu lado y ojala pronto poder vernos y conocernos.</p>
+        <p>Con un simple mensaje haces que mis dias sean mas bonitos, con un mensaje foto video alegras mi dia, solo con saber que estas en mi vida mis dias son mas felices, te amo demasiado.</p>
+        <p>Gracias por ser quien eres y por hacerme sentir tan amado. Mi amor por ti es infinito y siempre estaré aquí para ti, en cada paso del camino.</p>
+        <p class="heart">❤️</p>
+        <p>Con todo mi amor</p>
+        <p>Tu esposo</p>
+        <div class="image-container">
+            <div class="image-box">
+                <img src="Sunmy.png.jpg" alt="Imagen 1">
+            </div>
+            <div class="image-box">
+                <img src="sunmy2.png.jpg" alt="Imagen 2">
+            </div>
+        </div>
+        <div class="video-container">
+            <!-- Reemplaza el enlace del video con la ruta a tu archivo de video -->
+            <video controls>
+                <source src="messi.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Hecho por el amor de tu vida.</p>
+    </div>
+    <div class="download-container">
+        <h1>Recuerdos de lo que te he hecho</h1>
+        <!-- Enlace para descargar el PDF 1 -->
+        <a href="Como me empezaste a gustar.pdf" class="download-link" download>Descargar Como me empezaste a gustar</a>
+        <!-- Enlace para descargar el PDF 2 -->
+        <a href="Hola mi amor.pdf" class="download-link" download>Descargar Te amo demasiado</a>
+    </div>
+</body>
+</html>
