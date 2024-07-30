@@ -11,54 +11,112 @@
             margin: 0;
             padding: 0;
             background: url('hellokitty.png') no-repeat center center fixed;
-            background-size: cover; /* Ajusta la imagen al tamaño de la pantalla */
+            background-size: cover;
             color: #333;
             text-align: center;
         }
-        .download-container {
-            margin-top: 20px;
+
+        .exam-container {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
-        .download-link {
-            display: inline-block;
+        .exam-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        .exam-content h1 {
+            color: #ff3399;
+        }
+        .exam-content .question {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .exam-content .question label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+        .exam-content .question .radio-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .exam-content .question input[type="radio"] {
+            display: none;
+        }
+        .exam-content .question input[type="radio"] + label {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid #ff3399;
+            background-color: #fff;
+            color: #ff3399;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+        .exam-content .question input[type="radio"]:checked + label {
+            background-color: #ff3399;
+            color: #fff;
+            border-color: #ff3399;
+        }
+        .exam-content .question input[type="radio"] + label:hover {
+            background-color: #f3e5f5;
+        }
+        .exam-content .submit-btn {
             padding: 10px 20px;
             font-size: 16px;
             color: #fff;
             background-color: #ff3399;
             border: none;
             border-radius: 5px;
-            text-decoration: none;
+            cursor: pointer;
             transition: background-color 0.3s;
-            margin: 5px;
         }
-        .download-link:hover {
+        .exam-content .submit-btn:hover {
             background-color: #e6007e;
         }
+
         .container {
+            display: none;
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Blanco con opacidad para el fondo del contenedor */
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra del cuadro */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            color: #ff66b2; /* Rosa fuerte */
+            color: #ff66b2;
             font-size: 36px;
             margin-bottom: 10px;
         }
         p {
             font-size: 18px;
             line-height: 1.6;
-            color: #555; /* Gris oscuro */
+            color: #555;
         }
         .heart {
             font-size: 50px;
-            color: #ff3399; /* Rosa intenso */
+            color: #ff3399;
         }
         .footer {
             margin-top: 20px;
             font-size: 14px;
-            color: #888; /* Gris claro */
+            color: #888;
         }
         .image-container {
             display: flex;
@@ -70,49 +128,98 @@
         .image-box {
             flex: 1 1 calc(50% - 20px);
             max-width: calc(50% - 20px);
-            background-color: #ffffff; /* Blanco */
+            background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave de las imágenes */
-            overflow: hidden; /* Esconde el desbordamiento de las imágenes */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .image-box:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada en hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
         .image-box img {
             width: 100%;
-            height: auto; /* Mantiene la proporción de la imagen */
+            height: auto;
             display: block;
         }
         .video-container {
             margin: 20px 0;
-            padding: 10px;
-            background-color: #ffffff; /* Blanco */
+            position: relative;
+            display: inline-block;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave del video */
             overflow: hidden;
         }
         .video-container video {
             width: 100%;
-            height: auto; /* Mantiene la proporción del video */
+            height: auto;
             display: block;
         }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s;
+        }
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .video-play-button {
+            width: 60px;
+            height: 60px;
+            background: #ff3399;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .video-play-button:hover {
+            background-color: #e6007e;
+            transform: scale(1.1);
+        }
+        .video-play-button:active {
+            background-color: #cc007a;
+        }
+
         .audio-controls {
             margin: 20px 0;
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+        }
+        .audio-select {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ff3399;
+            background-color: #fff;
+            color: #ff3399;
+        }
+        .audio-select option {
+            padding: 5px;
         }
         .audio-button {
             padding: 10px 20px;
             font-size: 16px;
             color: #fff;
-            background-color: #ff3399; /* Rosa intenso */
+            background-color: #ff3399;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
+            margin: 5px; /* Separación entre botones */
         }
         .audio-button:hover {
             background-color: #e6007e;
@@ -125,33 +232,113 @@
             background-color: #c0c0c0;
             cursor: not-allowed;
         }
-        .pdf-preview-container {
-            margin: 20px 0;
+        .download-container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
         }
-        .pdf-preview {
-            width: 100%;
-            max-width: 800px; /* Ajusta el ancho máximo según sea necesario */
-            height: 600px; /* Ajusta la altura según sea necesario */
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave del contenedor del PDF */
+        .download-container h1 {
+            color: #ff66b2;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .download-link {
+            display: block;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #ff3399;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .download-link:hover {
+            background-color: #e6007e;
+        }
+        .download-link:active {
+            background-color: #cc007a;
         }
     </style>
 </head>
 <body>
-    <!-- Elemento de audio -->
-    <audio id="myAudio" src="sexo.mp3" preload="auto"></audio>
-    
-    <!-- Controles de audio -->
+    <div class="exam-container">
+        <div class="exam-content">
+            <h1>Por favor, completa el examen para continuar</h1>
+            <form id="examForm">
+                <div class="question">
+                    <label>1. Qué día es nuestro aniversario?</label>
+                    <div class="radio-group">
+                        <input type="radio" name="question1" value="correct" id="correct"><label for="correct">Día 28</label>
+                        <input type="radio" name="question1" value="wrong" id="wrong"><label for="wrong">Día 30</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <label>2. ¿Cuál es mi superhéroe favorito?</label>
+                    <div class="radio-group">
+                        <input type="radio" name="question2" value="wrong" id="content1"><label for="content1">Batman</label>
+                        <input type="radio" name="question2" value="correct" id="content2"><label for="content2">Spiderman</label>
+                    </div>
+                </div>
+                <button type="button" class="submit-btn" onclick="submitExam()">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <audio id="myAudio" preload="auto"></audio>
+
     <div class="audio-controls">
-        <button class="audio-button" onclick="playAudio()">Reproducir Audio</button>
-        <button class="audio-button" onclick="pauseAudio()">Pausar Audio</button>
-        <button class="audio-button" onclick="resumeAudio()">Reanudar Audio</button>
+        <select id="audioSelect" class="audio-select">
+            <option value="">Selecciona una canción</option>
+            <option value="sexo.mp3">Canción 1</option>
+            <option value="MyKindWoman.mp3">Canción 2</option>
+            <!-- Agrega más opciones según sea necesario -->
+        </select>
+        <button class="audio-button" onclick="pauseAudio()">Pausar</button>
+        <button class="audio-button" onclick="resumeAudio()">Reanudar</button>
+    </div>
+    
+    <div class="container">
+        <h1>Feliz cumpleaños mi reina hermosa</h1>
+        <p>Por hacerme tan feliz, eres y siempre serás el amor de mi vida, ojalá esto nunca acabe porque no me veo sin ti. Quiero una vida a tu lado y ojalá pronto poder vernos y conocernos.</p>
+        <p>Con un simple mensaje haces que mis días sean más bonitos, con un mensaje, foto o video alegras mi día. Solo con saber que estás en mi vida mis días son más felices. Te amo demasiado.</p>
+        <p>Gracias por ser quien eres y por hacerme sentir tan amado. Mi amor por ti es infinito y siempre estaré aquí para ti, en cada paso del camino.</p>
+        <p class="heart">❤️</p>
+        <p>Con todo mi amor</p>
+        <p>Tu esposo</p>
+        <div class="image-container">
+            <div class="image-box">
+                <img src="Sunmy.png.jpg" alt="Imagen 1">
+            </div>
+            <div class="image-box">
+                <img src="sunmy2.png.jpg" alt="Imagen 2">
+            </div>
+        </div>
+        <div class="video-container">
+            <video id="myVideo" controls>
+                <source src="messi.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+            <div class="video-overlay">
+                <div class="video-play-button" onclick="togglePlayPause()">▶</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Hecho por el amor de tu vida.</p>
+    </div>
+    <div class="download-container">
+        <h1>Recuerdos de lo que te he hecho</h1>
+        <a href="Como me empezaste a gustar.pdf" class="download-link" download>Como me empezaste a gustar</a>
+        <a href="Hola mi amor.pdf" class="download-link" download>Te amo demasiado</a>
     </div>
     
     <script>
         var audio = document.getElementById('myAudio');
+        var video = document.getElementById('myVideo');
+        var videoOverlay = document.querySelector('.video-overlay');
+        var audioSelect = document.getElementById('audioSelect');
 
         function playAudio() {
             audio.play().catch(function(error) {
@@ -168,42 +355,60 @@
                 console.log('Error al intentar reanudar el audio:', error);
             });
         }
+
+        function playSelectedAudio() {
+            var selectedSong = audioSelect.value;
+            if (selectedSong) {
+                audio.src = selectedSong;
+                audio.play().catch(function(error) {
+                    console.log('Error al intentar reproducir la canción:', error);
+                });
+            } else {
+                alert('Por favor, selecciona una canción.');
+            }
+        }
+
+        function submitExam() {
+            var correctAnswers = 0;
+            var form = document.getElementById('examForm');
+            var question1 = form.querySelector('input[name="question1"]:checked');
+            var question2 = form.querySelector('input[name="question2"]:checked');
+            
+            if (question1 && question1.value === 'correct') {
+                correctAnswers++;
+            }
+            if (question2 && question2.value === 'correct') {
+                correctAnswers++;
+            }
+
+            if (correctAnswers === 2) {
+                document.querySelector('.exam-container').style.display = 'none';
+                document.querySelector('.container').style.display = 'block'; // Mostrar el contenido principal
+            } else {
+                alert('Lo siento, no has pasado el examen. Por favor, intenta de nuevo.');
+            }
+        }
+
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                videoOverlay.classList.add('hidden');
+            } else {
+                video.pause();
+                videoOverlay.classList.remove('hidden');
+            }
+        }
+
+        // Nueva función para manejar el cambio en la selección de audio
+        audioSelect.addEventListener('change', function() {
+            var selectedSong = audioSelect.value;
+            if (selectedSong) {
+                audio.src = selectedSong;
+                audio.play().catch(function(error) {
+                    console.log('Error al intentar reproducir la canción:', error);
+                });
+            }
+        });
     </script>
-    
-    <div class="container">
-        <h1>Feliz cumpleaños mi reina hermosa</h1>
-        <p></p>
-        <p>Eres la mejor persona que pude encontrar en el mundo, te agradezco mucho por hacerme tan feliz, eres y siempre seras el amor de mi vida, ojala esto nunca acabe porque no me veo sin ti, quiero una vida a tu lado y ojala pronto poder vernos y conocernos.</p>
-        <p>Con un simple mensaje haces que mis dias sean mas bonitos, con un mensaje foto video alegras mi dia, solo con saber que estas en mi vida mis dias son mas felices, te amo demasiado.</p>
-        <p>Gracias por ser quien eres y por hacerme sentir tan amado. Mi amor por ti es infinito y siempre estaré aquí para ti, en cada paso del camino.</p>
-        <p class="heart">❤️</p>
-        <p>Con todo mi amor</p>
-        <p>Tu esposo</p>
-        <div class="image-container">
-            <div class="image-box">
-                <img src="Sunmy.png.jpg" alt="Imagen 1">
-            </div>
-            <div class="image-box">
-                <img src="sunmy2.png.jpg" alt="Imagen 2">
-            </div>
-        </div>
-        <div class="video-container">
-            <!-- Reemplaza el enlace del video con la ruta a tu archivo de video -->
-            <video controls>
-                <source src="messi.mp4" type="video/mp4">
-                Tu navegador no soporta la etiqueta de video.
-            </video>
-        </div>
-    </div>
-    <div class="footer">
-        <p>Hecho por el amor de tu vida.</p>
-    </div>
-    <div class="download-container">
-        <h1>Recuerdos de lo que te he hecho</h1>
-        <!-- Enlace para descargar el PDF 1 -->
-        <a href="Como me empezaste a gustar.pdf" class="download-link" download>Descargar Como me empezaste a gustar</a>
-        <!-- Enlace para descargar el PDF 2 -->
-        <a href="Hola mi amor.pdf" class="download-link" download>Descargar Te amo demasiado</a>
-    </div>
 </body>
 </html>
