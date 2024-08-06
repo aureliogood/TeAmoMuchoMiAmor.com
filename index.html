@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Amor para Ti</title>
+    <link rel="icon" href="kitty.png" type="image/png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,69 +16,43 @@
             text-align: center;
         }
 
-        .exam-container {
-            display: flex;
+        /* Formulario de Inicio de Sesión */
+        .login-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
         }
-        .exam-content {
+        .login-content {
             background: #fff;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
+            max-width: 400px;
             width: 100%;
         }
-        .exam-content h1 {
+        .login-content h1 {
             color: #ff3399;
+            margin-bottom: 20px;
         }
-        .exam-content .question {
-            margin: 20px 0;
-            text-align: left;
-        }
-        .exam-content .question label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: #555;
-        }
-        .exam-content .question .radio-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .exam-content .question input[type="radio"] {
-            display: none;
-        }
-        .exam-content .question input[type="radio"] + label {
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            margin-bottom: 10px;
+        .login-content input {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+            padding: 10px;
             border-radius: 5px;
-            cursor: pointer;
             border: 2px solid #ff3399;
-            background-color: #fff;
-            color: #ff3399;
-            transition: background-color 0.3s, color 0.3s, transform 0.3s;
-        }
-        .exam-content .question input[type="radio"]:checked + label {
-            background-color: #ff3399;
-            color: #fff;
-            border-color: #ff3399;
-        }
-        .exam-content .question input[type="radio"] + label:hover {
-            background-color: #f3e5f5;
-        }
-        .exam-content .submit-btn {
-            padding: 10px 20px;
             font-size: 16px;
+        }
+        .login-content button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
             color: #fff;
             background-color: #ff3399;
             border: none;
@@ -86,13 +60,46 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .exam-content .submit-btn:hover {
+        .login-content button:hover {
             background-color: #e6007e;
         }
 
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar li {
+            margin: 10px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #ff3399;
+            font-size: 18px;
+            padding: 12px 20px;
+            display: block;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #e6007e;
+        }
+
+        /* Contenedor de Información */
         .container {
             display: none;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.9);
@@ -116,71 +123,45 @@
         .footer {
             margin-top: 20px;
             font-size: 14px;
-            color: #888;
+            color: #777;
         }
-        .image-container {
+        .image-container, .video-container {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
             margin: 20px 0;
+            flex-wrap: wrap;
         }
-        .image-box {
-            flex: 1 1 calc(50% - 20px);
-            max-width: calc(50% - 20px);
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .image-box, .video-box {
+            flex: 1;
+            max-width: 300px;
         }
-        .image-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        .image-box img {
+        .image-box img, .video-box video {
             width: 100%;
-            height: auto;
-            display: block;
-        }
-        .video-container {
-            margin: 20px 0;
-            position: relative;
-            display: inline-block;
             border-radius: 10px;
-            overflow: hidden;
-        }
-        .video-container video {
-            width: 100%;
-            height: auto;
-            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .video-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: #fff;
+            cursor: pointer;
             transition: opacity 0.3s;
         }
         .video-overlay.hidden {
             opacity: 0;
-            pointer-events: none;
         }
         .video-play-button {
-            width: 60px;
-            height: 60px;
-            background: #ff3399;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
+            display: inline-block;
+            padding: 10px 20px;
             font-size: 24px;
+            color: #fff;
+            background-color: #ff3399;
+            border: none;
+            border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
         }
@@ -191,121 +172,40 @@
         .video-play-button:active {
             background-color: #cc007a;
         }
-
-        .audio-controls {
-            margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .audio-select {
-            margin-bottom: 20px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 2px solid #ff3399;
-            background-color: #fff;
-            color: #ff3399;
-        }
-        .audio-select option {
-            padding: 5px;
-        }
-        .audio-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #ff3399;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            margin: 5px; /* Separación entre botones */
-        }
-        .audio-button:hover {
-            background-color: #e6007e;
-            transform: scale(1.05);
-        }
-        .audio-button:active {
-            background-color: #cc007a;
-        }
-        .audio-button:disabled {
-            background-color: #c0c0c0;
-            cursor: not-allowed;
-        }
-        .download-container {
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 600px;
-        }
-        .download-container h1 {
-            color: #ff66b2;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .download-link {
-            display: block;
-            padding: 10px 15px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #ff3399;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-bottom: 10px;
-            transition: background-color 0.3s;
-        }
-        .download-link:hover {
-            background-color: #e6007e;
-        }
-        .download-link:active {
-            background-color: #cc007a;
-        }
     </style>
 </head>
 <body>
-    <div class="exam-container">
-        <div class="exam-content">
-            <h1>Por favor, completa el examen para continuar</h1>
-            <form id="examForm">
-                <div class="question">
-                    <label>1. Qué día es nuestro aniversario?</label>
-                    <div class="radio-group">
-                        <input type="radio" name="question1" value="correct" id="correct"><label for="correct">Día 28</label>
-                        <input type="radio" name="question1" value="wrong" id="wrong"><label for="wrong">Día 30</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <label>2. ¿Cuál es mi superhéroe favorito?</label>
-                    <div class="radio-group">
-                        <input type="radio" name="question2" value="wrong" id="content1"><label for="content1">Batman</label>
-                        <input type="radio" name="question2" value="correct" id="content2"><label for="content2">Spiderman</label>
-                    </div>
-                </div>
-                <button type="button" class="submit-btn" onclick="submitExam()">Enviar</button>
-            </form>
+    <!-- Formulario de Inicio de Sesión -->
+    <div class="login-container" id="login-container">
+        <div class="login-content">
+            <h1>Iniciar Sesión</h1>
+            <input type="text" id="username" placeholder="Nombre de usuario">
+            <input type="password" id="password" placeholder="Contraseña">
+            <button id="login-btn">Iniciar Sesión</button>
         </div>
     </div>
 
-    <audio id="myAudio" preload="auto"></audio>
+    <!-- Contenedor de Información -->
+    <div class="container" id="info-container">
+        <h1>Mi Amor para Ti</h1>
+        <p>Mi amor,
 
-    <div class="audio-controls">
-        <select id="audioSelect" class="audio-select">
-            <option value="">Selecciona una canción</option>
-            <option value="sexo.mp3">Canción 1</option>
-            <option value="MyKindWoman.mp3">Canción 2</option>
-            <!-- Agrega más opciones según sea necesario -->
-        </select>
-        <button class="audio-button" onclick="pauseAudio()">Pausar</button>
-        <button class="audio-button" onclick="resumeAudio()">Reanudar</button>
-    </div>
-    
-    <div class="container">
-        <h1>Feliz cumpleaños mi reina hermosa</h1>
-        <p>Por hacerme tan feliz, eres y siempre serás el amor de mi vida, ojalá esto nunca acabe porque no me veo sin ti. Quiero una vida a tu lado y ojalá pronto poder vernos y conocernos.</p>
-        <p>Con un simple mensaje haces que mis días sean más bonitos, con un mensaje, foto o video alegras mi día. Solo con saber que estás en mi vida mis días son más felices. Te amo demasiado.</p>
-        <p>Gracias por ser quien eres y por hacerme sentir tan amado. Mi amor por ti es infinito y siempre estaré aquí para ti, en cada paso del camino.</p>
-        <p class="heart">❤️</p>
-        <p>Con todo mi amor</p>
-        <p>Tu esposo</p>
+            Hoy es un día muy especial porque celebramos el cumpleaños de la persona más maravillosa que he tenido el privilegio de conocer. Aunque la distancia física nos separe, quiero empezar este mensaje diciéndote cuánto te amo y lo agradecido que estoy de tenerte en mi vida. Desde que llegaste a mi corazón, todo ha cambiado para mejor. Tu sonrisa ilumina mis días, tu risa es la melodía que llena mis momentos de alegría, y tu amor es el regalo más precioso que he recibido.
+            
+            Aunque no pueda estar a tu lado hoy para celebrarlo como me gustaría, quiero que sepas que estás en cada pensamiento mío, en cada latido de mi corazón. Cada vez que pienso en ti, siento una conexión profunda que trasciende la distancia. La forma en que me haces sentir amado y valorado, incluso a kilómetros de distancia, es algo que no puedo expresar con palabras. Eres mi compañera, mi confidente y mi mejor amiga, y estoy agradecido por cada momento que compartimos, ya sea a través de una llamada, un mensaje o una videollamada.
+            
+            En tu cumpleaños, deseo que sientas todo el amor que te tengo, aunque no pueda estar allí para dártelo en persona. Espero que te rodeen la felicidad, el cariño y las sorpresas que mereces. Que cada sueño que tienes se acerque más a hacerse realidad y que este nuevo año de vida esté lleno de momentos especiales y aventuras emocionantes.
+            
+            Mi amor, prometo seguir a tu lado en cada paso de este camino, apoyarte y quererte con todo mi corazón, sin importar la distancia que nos separe. Aunque hoy no pueda estar contigo para abrazarte y celebrar, estoy contigo en espíritu, enviándote todo mi amor y mejores deseos.
+            
+            Espero que tengas un cumpleaños increíble, lleno de alegría y rodeada de amor. Te amo más de lo que las palabras pueden expresar y estoy ansioso por el momento en que podamos estar juntos y celebrar todos estos momentos especiales cara a cara.
+            
+            Con todo mi amor,
+            
+            Juan.❤️</p>
+        <div class="heart">🤍</div>
+
+        <!-- Contenedores de Imágenes -->
         <div class="image-container">
             <div class="image-box">
                 <img src="Sunmy.png.jpg" alt="Imagen 1">
@@ -313,101 +213,92 @@
             <div class="image-box">
                 <img src="sunmy2.png.jpg" alt="Imagen 2">
             </div>
-        </div>
-        <div class="video-container">
-            <video id="myVideo" controls>
-                <source src="messi.mp4" type="video/mp4">
-                Tu navegador no soporta la etiqueta de video.
-            </video>
-            <div class="video-overlay">
-                <div class="video-play-button" onclick="togglePlayPause()">▶</div>
+            <div class="image-box">
+                <img src="sunmy3.png.jpg" alt="Imagen 3">
+            </div>
+            <div class="image-box">
+                <img src="sunmy4.png.jpg" alt="Imagen 4">
+            </div>
+            <div class="image-box">
+                <img src="sunmy5.png.jpg" alt="Imagen 5">
+            </div>
+            <div class="image-box">
+                <img src="sunmy6.png.jpg" alt="Imagen 6">
             </div>
         </div>
+
+        <!-- Contenedores de Videos -->
+        <div class="video-container">
+            <div class="video-box">
+                <video id="video1" controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="video-box">
+                <video id="video2" controls>
+                    <source src="video2.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="video-box">
+                <video id="video3" controls>
+                    <source src="video3.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="video-box">
+                <video id="video4" controls>
+                    <source src="video4.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+        </div>
+        
+        <div class="footer">
+            &copy; 2024 Mi Amor para Ti
+        </div>
     </div>
-    
-    <div class="footer">
-        <p>Hecho por el amor de tu vida.</p>
-    </div>
-    <div class="download-container">
-        <h1>Recuerdos de lo que te he hecho</h1>
-        <a href="Como me empezaste a gustar.pdf" class="download-link" download>Como me empezaste a gustar</a>
-        <a href="Hola mi amor.pdf" class="download-link" download>Te amo demasiado</a>
-    </div>
-    
+
     <script>
-        var audio = document.getElementById('myAudio');
-        var video = document.getElementById('myVideo');
-        var videoOverlay = document.querySelector('.video-overlay');
-        var audioSelect = document.getElementById('audioSelect');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos de la página
+            const loginContainer = document.getElementById('login-container');
+            const infoContainer = document.getElementById('info-container');
+            const videoContainer = document.getElementById('video1');
+            const playVideoBtn = document.getElementById('play-video');
+            const videoOverlay = document.getElementById('video-overlay');
 
-        function playAudio() {
-            audio.play().catch(function(error) {
-                console.log('Error al intentar reproducir el audio:', error);
+            // Datos de acceso
+            const validUsername = 'sunmypoto';
+            const validPassword = '28/04/2024';
+
+            // Función de inicio de sesión
+            document.getElementById('login-btn').addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                if (username === validUsername && password === validPassword) {
+                    loginContainer.style.display = 'none';
+                    infoContainer.style.display = 'block'; // Mostrar el contenido principal
+                } else {
+                    alert('Nombre de usuario o contraseña incorrectos.');
+                }
             });
-        }
 
-        function pauseAudio() {
-            audio.pause();
-        }
-
-        function resumeAudio() {
-            audio.play().catch(function(error) {
-                console.log('Error al intentar reanudar el audio:', error);
-            });
-        }
-
-        function playSelectedAudio() {
-            var selectedSong = audioSelect.value;
-            if (selectedSong) {
-                audio.src = selectedSong;
-                audio.play().catch(function(error) {
-                    console.log('Error al intentar reproducir la canción:', error);
-                });
-            } else {
-                alert('Por favor, selecciona una canción.');
-            }
-        }
-
-        function submitExam() {
-            var correctAnswers = 0;
-            var form = document.getElementById('examForm');
-            var question1 = form.querySelector('input[name="question1"]:checked');
-            var question2 = form.querySelector('input[name="question2"]:checked');
-            
-            if (question1 && question1.value === 'correct') {
-                correctAnswers++;
-            }
-            if (question2 && question2.value === 'correct') {
-                correctAnswers++;
-            }
-
-            if (correctAnswers === 2) {
-                document.querySelector('.exam-container').style.display = 'none';
-                document.querySelector('.container').style.display = 'block'; // Mostrar el contenido principal
-            } else {
-                alert('Lo siento, no has pasado el examen. Por favor, intenta de nuevo.');
-            }
-        }
-
-        function togglePlayPause() {
-            if (video.paused) {
-                video.play();
+            // Video
+            playVideoBtn.addEventListener('click', function() {
+                videoContainer.play();
                 videoOverlay.classList.add('hidden');
-            } else {
-                video.pause();
-                videoOverlay.classList.remove('hidden');
-            }
-        }
+            });
 
-        // Nueva función para manejar el cambio en la selección de audio
-        audioSelect.addEventListener('change', function() {
-            var selectedSong = audioSelect.value;
-            if (selectedSong) {
-                audio.src = selectedSong;
-                audio.play().catch(function(error) {
-                    console.log('Error al intentar reproducir la canción:', error);
-                });
-            }
+            videoContainer.addEventListener('play', function() {
+                videoOverlay.classList.add('hidden');
+            });
+
+            videoContainer.addEventListener('pause', function() {
+                videoOverlay.classList.remove('hidden');
+            });
         });
     </script>
 </body>
